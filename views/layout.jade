@@ -5,7 +5,7 @@ html(lang="en")
         link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     body
         #account_manager
-            if (locals.login)
+            if (!locals.signin)
                 #sign_in sign in
                 #sign_up sign up
             else
