@@ -5,8 +5,8 @@ var express = require('express'),
     http    = require('http'),
     path    = require('path');
     app     = express(),
-    server  = http.createServer(app),
-    io      = require('socket.io').listen(server);
+    server  = http.createServer(app);
+    //io      = require('socket.io').listen(server);
  
 app.configure(function(){
     app.set('port', process.env.PORT || 3000);
@@ -15,7 +15,9 @@ app.configure(function(){
     app.use(express.favicon(__dirname + '/public/images/favicon.ico')); 
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
+    app.use(express.cookieParser());
     app.use(express.methodOverride());
+    app.locals();
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -36,13 +38,21 @@ app.configure('production', function() {
 // Index
 app.get('/', function(req, res) {
 
+    if (!req.cookies.user) {
+
+        res.cookie('user', 'zoran.felbar@gmail.com');
+        res.locals.login = true;
+    } else {
+
+        res.locals.login = false;
+    }
+
     db.games.find(function(err, docs) {
 
         res.render('index', {
             title: 'Home',
             games: docs
         });
-        console.log(docs);
     });
 });
 
@@ -50,6 +60,7 @@ app.get('/', function(req, res) {
 app.get('/lobby/:id', function(req, res) {
 
     db.games.find( { name: req.params.id }, function(err, game) {
+
         if (err || game == '') {
 
             return res.render('404', {
@@ -58,6 +69,7 @@ app.get('/lobby/:id', function(req, res) {
             });
             
         }
+
         return res.render('lobby', { title: 'Lobby', name: req.params.id });
     });
 });
@@ -66,7 +78,21 @@ app.get('/lobby/:id', function(req, res) {
 app.get('/room/:id', function(req, res) {
 
     res.render('room', { title: 'Room'});
-    var room_id = req.params.id;
+});
+
+// Profile
+app.get('/profile', function(req, res) {
+
+    res.render('profile', {
+        title: 'Profile'
+    });
+});
+
+// Sign out
+app.get('/signout', function(req, res) {
+
+    res.clearCookie('user');
+    res.redirect('/');
 });
 
 // POST
@@ -108,7 +134,7 @@ app.use(function(err, req, res, next) {
 
 server.listen(app.get('port'), function() { console.log("Express server listening on port " + app.get('port')); });
 
-io.sockets.on('connection', function(socket) {
+/*io.sockets.on('connection', function(socket) {
 
     socket.on('connect', function(msg) {
 
@@ -119,4 +145,4 @@ io.sockets.on('connection', function(socket) {
 
         console.log('data: ' + socket.id);
     });
-});
+});*/

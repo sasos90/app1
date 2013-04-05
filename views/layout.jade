@@ -5,8 +5,14 @@ html(lang="en")
         link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     body
         #account_manager
-            #sign_in sign in
-            #sign_up sign up
+            if (locals.login)
+                #sign_in sign in
+                #sign_up sign up
+            else
+                #sign_out
+                    a(href='/signout') sign out
+                #profile
+                    a(href='/profile') profile
         #top
             #center
                 a(href="/")
