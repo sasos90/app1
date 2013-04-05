@@ -3,7 +3,11 @@
     padding: 0px;
 }
 
-a { color: #FFF; }
+a:hover { text-decoration: underline; }
+a {
+    color: #FFF;
+    text-decoration: none;
+}
 input { border: none; }
 
 :focus {
@@ -48,9 +52,17 @@ html, body {
     right: 65px;
 }
 
+#account_manager #sign_out {
+    position: absolute;
+    right: 55px;
+}
+
 #account_manager #sign_in:hover { cursor: pointer; }
 #account_manager #sign_up { float: right; }
 #account_manager #sign_up:hover { cursor: pointer; }
+#account_manager #sign_out:hover { cursor: pointer; }
+#account_manager #profile { float: right; }
+#account_manager #profile:hover { cursor: pointer; }
 
 #games {
     margin-top: 20px;
