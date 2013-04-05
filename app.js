@@ -34,18 +34,29 @@ app.configure('production', function() {
 // routes                //
 ///////////////////////////
 
+// Functions
+function isLoggedIn(req, res) {
+
+    if (req.cookies.user)
+        return true;
+    else
+        return false;
+}
+
 // GET
+// For all routes
+app.get('/*', function(req, res, next) {
+
+    if (isLoggedIn(req, res))
+        res.locals.signin = true;
+    else
+        res.locals.signin = false;
+
+    next();
+});
+
 // Index
 app.get('/', function(req, res) {
-
-    if (!req.cookies.user) {
-
-        res.cookie('user', 'zoran.felbar@gmail.com');
-        res.locals.login = true;
-    } else {
-
-        res.locals.login = false;
-    }
 
     db.games.find(function(err, docs) {
 
@@ -58,6 +69,8 @@ app.get('/', function(req, res) {
 
 // Lobby
 app.get('/lobby/:id', function(req, res) {
+
+    res.cookie('user', '1');
 
     db.games.find( { name: req.params.id }, function(err, game) {
 
