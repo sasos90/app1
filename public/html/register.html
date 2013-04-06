@@ -1,0 +1,55 @@
+<script type="text/javascript">
+
+	var temno = "#666";
+	var svetlo = "#CCC";
+	
+	$("#username").focusin(function() {
+		if($(this).val() == "E-mail")
+			$(this).val("").css("color", temno);
+	});
+	
+	$("#username").focusout(function() {
+		if($(this).val() == "")
+			$(this).val("E-mail").css("color", svetlo);
+	});
+	
+	$("#password").focusin(function() {
+		if($(this).val() == "Password") {
+			$(this).attr("type", "password");			
+			$(this).val("").css("color", temno);
+		}
+	});
+	
+	$("#password").focusout(function() {
+		if($(this).val() == "") {
+			$(this).attr("type", "text");			
+			$(this).val("Password").css("color", svetlo);
+		}
+	});
+	
+	$("#nickname").focusin(function() {
+		if($(this).val() == "Nickname")
+			$(this).val("").css("color", temno);
+	});
+	
+	$("#nickname").focusout(function() {
+		if($(this).val() == "")
+			$(this).val("Nickname").css("color", svetlo);
+	});
+	
+	$("#loginButton").click(function(){
+		if($("#username").val() == "E-mail" || $("#password").val() == "Password" || $("#nickname").val() == "Nickname") {
+			alert("Niste vnesli vseh polj!");
+			event.preventDefault();
+		}
+	});
+</script>
+<div id="loginForm">
+	<h3>Create a free account</h3>
+	<form method="POST" action="/sign_up">
+		<div class="input"><input type="text" name="username" value="E-mail" id="username" /></div>
+		<div class="input"><input type="text" name="password" value="Password" id="password" /></div>
+		<div class="input"><input type="text" name="nickname" value="Nickname" id="nickname" /></div>
+		<input type="submit" name="submit_register" value="&nbsp;" id="loginButton" />
+	</form>
+</div>

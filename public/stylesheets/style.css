@@ -3,11 +3,7 @@
     padding: 0px;
 }
 
-a:hover { text-decoration: underline; }
-a {
-    color: #FFF;
-    text-decoration: none;
-}
+a { color: #FFF; }
 input { border: none; }
 
 :focus {
@@ -52,17 +48,9 @@ html, body {
     right: 65px;
 }
 
-#account_manager #sign_out {
-    position: absolute;
-    right: 55px;
-}
-
 #account_manager #sign_in:hover { cursor: pointer; }
 #account_manager #sign_up { float: right; }
 #account_manager #sign_up:hover { cursor: pointer; }
-#account_manager #sign_out:hover { cursor: pointer; }
-#account_manager #profile { float: right; }
-#account_manager #profile:hover { cursor: pointer; }
 
 #games {
     margin-top: 20px;
@@ -168,9 +156,19 @@ html, body {
     overflow-x: hidden; 
 }
 
+.scroll-me {
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
 .scroll-me::-webkit-scrollbar {
     width: 10px;
     height: 10px;
+}
+
+::-webkit-scrollbar-button {
+  display: block;
+  width: 17px;
+  height: 17px;
 }
 
 .scroll-me::-webkit-scrollbar-button:decrement:start {
@@ -185,54 +183,81 @@ html, body {
     background: url(../images/scr_up.png) no-repeat;
 }
 
-.scroll-me::-webkit-scrollbar-button:increment:end {
+.scroll-me::-webkit-scro    llbar-button:increment:end {
     background: url(../images/scr_down.png) no-repeat;
 }
 
-#messages {
-    overflow-y: auto;
-    overflow-x: hidden; 
-}
-
-#messages::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-#messages::-webkit-scrollbar-thumb:vertical {
+.scroll-me::-webkit-scrollbar-thumb:vertical {
     height: 50px;
     background-color: #666;
-    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 2px;
+    border-left: 2px solid #121212;
 }
 
-#platform {
+/* Login form begin */
+#loginForm {
+    border-radius: 5px;
+    padding: 20px;
+    background: #040404;
+    margin: auto;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin-top: 20px;
-    width: 900px;
-    height: 600px;
-    border-radius: 3px;
+    width: 256px;
 }
 
-#platform #chat {
+#loginForm a:hover {
+    color:  #FFF;
+}
+
+#loginForm div {
+    margin: 10px 0px 10px 0px;
+}
+.input {
+    width: 256px;
+    height: 43px;
+    background: url(../images/input.png) no-repeat;
+}
+
+.input input {
+    width:  230px;
+    color: #CCC;
+    margin: 12px 0px 0px 10px;
+    font-size: 16px;
+}
+
+#loginButton {
+    cursor: pointer;
+    width: 110px;
+    height: 36px;
+    background: url(../images/loginBtn00.png) no-repeat;
+}
+
+#loginButton:hover {
+    background: url(../images/loginBtn01.png) no-repeat;
+}
+
+/* POPUP */
+.zunaj
+{
+    background-color: black;
     position: absolute;
-    overflow: auto;
-    bottom: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
 }
 
-#chat { color: #777; }
-#chat #input {
-    width: 860px;
-    padding: 10px;
-    background: rgba(0, 0, 0, .1);
-    color: #777;
+.znotraj
+{
+    position: absolute;
+    width: 296px;
+    margin-left: -148px;
+    left: 50%;
+    top: 50px;
+    border: 1px solid #999;
 }
 
-#chat #messages {
-    background: rgba(0, 0, 0, .1);
-    margin-bottom: 2px;
-    max-height: 200px;
-    width: 300px;
-    overflow-y: auto;
-}
+/* KONEC POPUP */

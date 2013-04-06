@@ -2,7 +2,7 @@ extends layout
 
 block content
 	h1 Games
-	p Pick a game you would like to play
+	p Pick a game you would like to play.
 	#games
 		for game in games
 			a(href='/lobby/#{game.name}')

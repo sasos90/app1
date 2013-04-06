@@ -1,0 +1,36 @@
+<script language="JavaScript">
+	$("#username").focusin(function() {
+		if($(this).val() == "Username")
+			$(this).val("").css("color", "#666");
+	});
+	
+	$("#username").focusout(function() {
+		if($(this).val() == "")
+			$(this).val("Username").css("color", "#CCC");
+	});
+	
+	$("#password").focusin(function() {
+		if($(this).val() == "Password") {
+			$(this).attr("type", "password");			
+			$(this).val("").css("color", "#666");
+		}
+	});
+	
+	$("#password").focusout(function() {
+		if($(this).val() == "") {
+			$(this).attr("type", "text");			
+			$(this).val("Password").css("color", "#CCC");
+		}
+	});
+</script>
+
+<div id="loginForm">
+	Login
+	<form method="POST" action="/sign_in">
+		<div class="input"><input type="text" name="username" value="Username" id="username" /></div>
+		<div class="input"><input type="text" name="password" value="Password" id="password" /></div>
+		<div><input type="checkbox" name="rememberMe" value="1" id="rememberId" /><label for="rememberId"> Remember me</label></div>
+		<div><a href="">I forgot my password</a></div>
+		<input type="submit" name="submit_login" value="&nbsp;" id="loginButton" />
+	</form>
+</div>
